@@ -9,11 +9,14 @@ form.addEventListener('input', throttle(onInput), 500)
 populateTextarea()
 
 function onForm(evt) {
-   evt.preventDefault();
-  localStorage.removeItem(STORAGE_KEY);
-    evt.currentTarget.reset();
-    const { email, message } = evt.currentTarget.elements;
+evt.preventDefault();
+const { email, message } = evt.currentTarget.elements;
 console.log({ email: email.value, message: message.value });
+if (email.value === "" || message.value === "") {
+return alert(`Please fill in all the fields!`);
+}
+localStorage.removeItem(STORAGE_KEY);
+evt.currentTarget.reset(); 
 }
 
 
@@ -25,7 +28,7 @@ localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 
 function populateTextarea() {
 if (formData) {
- let { email, message } = form.elements;
+const { email, message } = form.elements;
 email.value = formData.email || "";
 message.value = formData.message || "";
    }
