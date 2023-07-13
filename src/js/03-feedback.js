@@ -11,12 +11,13 @@ populateTextarea()
 function onForm(evt) {
 evt.preventDefault();
 const { email, message } = evt.currentTarget.elements;
-console.log({ email: email.value, message: message.value });
 if (email.value === "" || message.value === "") {
 return alert(`Please fill in all the fields!`);
 }
+console.log(formData);
 localStorage.removeItem(STORAGE_KEY);
 evt.currentTarget.reset(); 
+formData = {};
 }
 
 
